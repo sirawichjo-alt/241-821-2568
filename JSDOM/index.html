@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSDOM Example</title>
+</head>
+<body>
+    เพศ:
+   <input type="radio" name="gender" value="male" onchange="onchangeGender()" checked="true">ชาย
+   <input type="radio" name="gender" value="female" onchange="onchangeGender()">หญิง
+    <script>
+    function onchangeGender() {
+    // เลือก gender ทุก input ออกมา
+       let gendersInput = document.querySelectorAll('input[name="gender"]');
+
+    // checked ตัวไหน มีอยู่ ให้เอา value มาแสดง
+            for (let i = 0;i < gendersInput.length;i++) {
+                if (gendersInput[i].checked) {
+                    console.log("เพศที่เลือก: " + gendersInput[i].value);
+            }
+        }
+    }    /* /* <button onclick="userClicked()">Submit</button>
+    <div onclick="devCleck()"> dev clicked</div>
+    <script>
+        function userClicked() {
+            console.log("User clicked the button!");            
+        }
+        function devCleck() {
+            console.log("Developer clicked the div!");            
+        } 
+        /* งานอดิเรก:
+    <input type="checkbox" name="hobby" value="football">Football
+    <input type="checkbox" name="hobby" value="basketball">Basketball
+    <input type="checkbox" name="hobby" value="tennis">Tennis
+    <script>
+        let checkboxes = document.querySelectorAll('input[name="hobby"]');
+        for (let i = 0; i < checkboxes.length; i++) {
+            console.log(checkboxes[i].value); 
+    } */  
+    </script>
+
+</body>
+</html>
