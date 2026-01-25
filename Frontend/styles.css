@@ -1,0 +1,139 @@
+/* นำเข้า Font เพื่อความอินเตอร์ */
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Prompt', sans-serif;
+    /* พื้นหลังแบบไล่เฉดสีแนว Cinematic */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* ตัวคอนเทนเนอร์แบบกระจก (Glassmorphism) */
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform: translateY(0);
+    transition: all 0.4s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* หัวข้อ Register form */
+.header {
+    font-size: 32px;
+    font-weight: 600;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* จัดระเบียบแถว Input */
+.flex {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.form-input {
+    margin-bottom: 20px;
+}
+
+.header-form {
+    width: 90px;
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 15px;
+}
+
+/* ตกแต่งช่องกรอกข้อมูลให้ดูแพง */
+.form, textarea {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: #f8fafc;
+}
+
+.form:focus, textarea:focus {
+    border-color: #764ba2;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(118, 75, 162, 0.1);
+    outline: none;
+}
+
+/* สำหรับเพศและงานอดิเรก */
+.gender .flex div {
+    margin-right: 10px;
+    padding: 5px 10px;
+    background: #f1f5f9;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.gender .flex div:hover {
+    background: #e2e8f0;
+}
+
+/* Textarea */
+textarea {
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+    resize: none;
+}
+
+/* ปุ่มกดระดับ Premium */
+.button {
+    background: linear-gradient(to right, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 16px;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px rgba(118, 75, 162, 0.3);
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    box-shadow: 0 8px 25px rgba(118, 75, 162, 0.4);
+    filter: brightness(1.1);
+    transform: scale(1.02);
+}
+
+.button:active {
+    transform: scale(0.98);
+}
+
+/* เพิ่มลูกเล่นให้ Checkbox และ Radio นิดหน่อย */
+input[type="checkbox"], input[type="radio"] {
+    accent-color: #764ba2; /* เปลี่ยนสีปุ่มเลือกเป็นสีม่วง */
+    transform: scale(1.1);
+}
