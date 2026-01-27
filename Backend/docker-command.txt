@@ -1,0 +1,18 @@
+docker run hello-world
+docker 
+docker list containers all
+dockerps --all
+docker run busybox echo 'hello world in docker'
+docker run busybox ls
+docker run busybox ping google.com 
+docker stop CONTAINER ID
+docker pull busybox
+docker create busybox ping google.com
+docker start CONTAINER ID
+
+docker start -a CONTAINER ID
+
+docker system prune
+docker run nginx
+
+docker exex CONTAINER ID ls
