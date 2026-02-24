@@ -1,27 +1,38 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mysql = require('mysql2/promise');
 const app = express();
 const port = 8000;
-
 app.use(bodyParser.json());
-
 let users = []
 let counter = 1;
 
-//path = GET /users
-app.get('/users',  (req, res) => {
-    res.json(users);
-});
+let conn = null
+const initDBConnection = async () => {
+    conn = await mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'root',
+        database: 'webdb',
+        port: 8821
+    })
+}
 
-//path = POST /user
-app.post('/user', (req, res) => {
+//path = GET /users สำหรับ get ข้อมูล users ทั้งหมด
+app.get('/users', async (req, res) => {
+    const results = await conn.query('SELECT * FROM users')
+    res.json(results[0])
+})
+
+//path = POST /users สำหรับเพิ่ม users ใหม่
+app.post('/users', async (req, res) => {
     let user = req.body;
-    user.id = counter
-    counter += 1
-    users.push(user);
-    res.json({ 
-        message: 'User added successfully', 
-        user: user });
+    const results = await conn.query('INSERT INTO users SET ?', user);
+    console.log('results:', results);
+    res.json({
+        message: 'User created successfully',
+        data: results[0]
+    });
 })
 
 //path = PUT /user/:id
@@ -32,7 +43,7 @@ app.patch('/user/:id', (req, res) => {
     let selectedIndex = users.findIndex(user => user.id == id)
     //update users นั้น
     if (updatedUser.name) {
-        users[selectedIndex].name = updatedUser.name || users[selectedIndex].name   
+        users[selectedIndex].name = updatedUser.name || users[selectedIndex].name
     }
     if (updatedUser.age) {
         users[selectedIndex].age = updatedUser.age || users[selectedIndex].age
@@ -42,11 +53,11 @@ app.patch('/user/:id', (req, res) => {
 
     res.json({
         message: 'User updated successfully',
-        data : {
+        data: {
             user: updatedUser,
             indexUpdated: selectedIndex
         }
-    })  
+    })
 })
 
 //path = DELETE /users/:id
@@ -68,6 +79,7 @@ app.delete('/users/:id', (req, res) => {
     }
 })
 
-app.listen(port, () => {
+app.listen(port, async () => {
+    await initDBConnection();
     console.log(`Server is running on port ${port}`);
 });
